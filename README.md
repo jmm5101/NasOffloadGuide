@@ -399,6 +399,16 @@ Quality checks may be changed by injection, because errors in them must be fixab
 
 ---
 
+**Rule 0: first run to the end product, no hand-holding.** This rule comes first and overrides the others. The bot's first deliverable is one complete script that runs on the host from input all the way to the validated end product. If that isn't feasible, the bot writes a stage plan up front: each stage has a pass test, and the next stage starts automatically when the previous one passes. The owner gets no messages between stages. The bot checks that things are moving, injects revisions itself, and does whatever work is needed to finish the product. It never asks the owner to start, confirm, choose or watch.
+
+**One bot, set and forget.** An offload project has one bot, and the owner talks only to it. Approval of the brief is the go-ahead. The bot does not restate scope, wait for "go", or require research documents before starting approved work. Extra bots or cloud agents are used only for one specific task within a fixed budget, never as a standing team.
+
+**The host does the work and the checking.** The pipeline on the host builds, runs and validates its own output against an independent reference. It writes a machine-readable summary and publishes to the dashboard only when validation passes. The bot starts the pipeline, reads the summary and spot-checks a small sample. Jobs producing no valid output are halted before new work starts, and runners are sized so validation never queues behind production work.
+
+**Three messages only.** The owner hears only "Done" (validated output live, with a link, a sample and the metrics), "Blocked" (the one thing needed), or a Yes/No card for actions outside the approval. New instructions are taken without a reply. A question about timing gets one line with the known time.
+
+**Budget and kill switch.** Every project states a cap on bot turns and a deadline at the start. At 80% of the cap, bot-side work stops and the host keeps running. If validated output isn't on the dashboard by the deadline, the bot halts its host jobs without deleting anything, turns off its schedules, and sends one Blocked message with a Yes/No card to continue. Stops cover only the bot's own work, including host jobs and workflows, and are confirmed on the host.
+
 ## 8. Sturdiness practices
 
 These make the human → AI → GitHub → host chain hold together.
