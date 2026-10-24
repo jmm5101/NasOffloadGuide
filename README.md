@@ -409,6 +409,8 @@ Quality checks may be changed by injection, because errors in them must be fixab
 
 **Budget and kill switch.** Every project states a cap on bot turns and a deadline at the start. At 80% of the cap, bot-side work stops and the host keeps running. If validated output isn't on the dashboard by the deadline, the bot halts its host jobs without deleting anything, turns off its schedules, and sends one Blocked message with a Yes/No card to continue. Stops cover only the bot's own work, including host jobs and workflows, and are confirmed on the host.
 
+**Measure real throughput after scaling out.** After adding workers, check the actual combined throughput about an hour in. Don't trust the configured worker count. Log how many workers are really running, plus memory used and free for each job, not the cap. Don't run the queue strictly in order: launch the first waiting job that fits in free memory, and size each job type from its measured peak memory, so one oversized job can't block everything behind it.
+
 ## 8. Sturdiness practices
 
 These make the human → AI → GitHub → host chain hold together.
