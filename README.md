@@ -425,6 +425,8 @@ These make the human → AI → GitHub → host chain hold together.
 
 ---
 
+**Validate output, not counts, and never make the human the validator.** A pipeline's own pass/fail metric is not proof that its output is right. A single fit or error score can look perfect while the result is nonsense. Before reporting any count, rate or speed, the bot draws a random sample (at least 10 items, or 1%) and checks it against an independent reference the pipeline never touched. For spatial data that means a rendered overlay on a basemap, plus shape checks and an error stated in real units. The check runs where the work runs: as a job on the offload machine that writes a pass/fail summary and sample renders. Bots then do only small backup spot checks, and run the full check themselves only when the summary is missing, stale or suspicious. The check re-runs on every new version and every speed-up. Until it passes, every number is labeled "unvalidated". If the sample fails, the bot halts speed work and fixes or rolls back on its own. A separate watcher bot confirms the result. The human only receives decisions: spend, delete, or change the method. The human never receives discoveries, and is never asked to watch output to catch errors.
+
 ## 9. Team of bots, by role
 
 One lead keeps the rules and decides which specialists a project needs. Small projects can combine roles; the change gatekeeper and the critic must never be the same bot as the author of a change.
