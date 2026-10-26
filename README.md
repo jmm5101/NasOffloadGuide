@@ -411,6 +411,8 @@ Quality checks may be changed by injection, because errors in them must be fixab
 
 **Measure real throughput after scaling out.** After adding workers, check the actual combined throughput about an hour in. Don't trust the configured worker count. Log how many workers are really running, plus memory used and free for each job, not the cap. Don't run the queue strictly in order: launch the first waiting job that fits in free memory, and size each job type from its measured peak memory, so one oversized job can't block everything behind it.
 
+**Keep parallelism up for the whole run.** If large jobs cluster together, only a few fit in memory at once, and throughput drops after the early stretch. Interleave large and small jobs through the queue, or cut each job's memory (smaller batches), so the number of workers running stays high from start to finish. Compare average throughput with peak throughput. A big gap means parallelism collapsed partway through.
+
 ## 8. Sturdiness practices
 
 These make the human → AI → GitHub → host chain hold together.
